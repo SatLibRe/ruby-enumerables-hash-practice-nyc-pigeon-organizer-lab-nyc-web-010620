@@ -1,21 +1,19 @@
-require "pp"
+require "pry"
 
-def nyc_pigeon_organizer(data)
-results = {}
-    data.each do |color_gender_lives,value| 
-        value.each do |stats, all_names|
-            all_names.each do |name|
-                if results[name] == nil 
-                    results[name] = {}
-                end 
-                if results[name][color_gender_lives] == nil
-                    results[name][color_gender_lives] = []
-                end 
-                results[name][color_gender_lives].push(stats.to_s)
-            end 
+def nyc_pigeon_organizer(pigeon_data)
+  new_hash = {}
+    pigeon_data.each do |c_g_l,data|
+      data.each do |stats,all_names|
+        all_names.each do |name|
+          if new_hash[name] == nil 
+            new_hash[name] = {}
+          end 
+          if new_hash[name][c_g_l] == nil 
+              new_hash[name][c_g_l] = []
+          end 
+          new_hash[name][c_g_l].push(stats.to_s)
         end 
+      end 
     end
-   results
+    new_hash
 end
-
-
